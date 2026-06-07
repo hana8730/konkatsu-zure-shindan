@@ -155,26 +155,24 @@
                     </p>
                 </div>
 
-                <!-- もったいないポイント -->
+                <!-- 気づきのポイント -->
                 <div class="bg-amber-50 border border-amber-100 p-3 rounded-lg mt-2">
                     <p class="text-amber-700 font-bold text-xs flex items-center gap-1 mb-1">
-                        💡 もったいないポイント
+                        💡 気づきのポイント
                     </p>
-                    <p class="text-amber-900 text-xs md:text-sm leading-relaxed">
-                        人生の時間資産が<span class="text-amber-600 font-bold">相手によって左右されたり、２年３年とズルズルと過ぎていく</span>かもしれません😅
-                    </p>
+                    <p id="notice-text" class="text-amber-900 text-xs md:text-sm leading-relaxed"></p>
                 </div>
 
                 <!-- 公式LINEへの誘導 -->
                 <div class="pt-2 text-xs md:text-sm border-t border-gray-200/60 text-gray-600 space-y-2">
                     <p>
-                        せっかくなので、あなたに相応しい婚活のスタイルを<strong>LINEにて提供</strong>しております。
+                        そこで、あなたに相応しい婚活のスタイルを<strong>LINEにて提供</strong>しております。
                     </p>
                     <p>
-                        LINEでは、プロが教える<strong>「婚活スタイルベスト３」</strong>を<strong>20分の限定動画講座</strong>として特別にプレゼントしています。
+                        特別にプレゼントしています。お友達追加後、「ベスト３」と返信してください👇<strong>限定講座をプレゼント致します🎁</strong>
                     </p>
                     <p class="text-[11px] text-gray-500">
-                        ※講座の中で疑問に思ったことなどは、LINEのメッセージにてプロに直接質問も可能です。
+                        講座中の質問や疑問もLINEにてプロのアドバイザーがメッセージにてサポート致します
                     </p>
                 </div>
             </div>
@@ -188,7 +186,7 @@
         </button>
 
         <!-- 再診断用リンク -->
-        <button onclick="nextScreen(0)" class="mt-4 text-xs text-gray-400 hover:text-accent-orange transition underline">
+        <button id="restart-btn" onclick="nextScreen(0)" class="mt-4 text-xs text-gray-400 hover:text-accent-orange transition underline">
             もう一度診断する
         </button>
     </div>
@@ -296,32 +294,44 @@
         0: {
             typeName: "白馬の騎士待ち型（引き寄せ力のズレ）",
             normally: "いつか自然に、自分のことをすべて受け入れてくれる理想的なパートナーが現れるはず",
-            detail: "自分からは積極的なアプローチを起こさず「受け身」で待ち続け、せっかくの誠実な出会いやご縁を最初からスルーして逃してしまっている"
+            detail: "もしかすると、自分からは積極的にアプローチを起こさず「受け身」で待ち続け、せっかくの誠実な出会いやご縁を最初からスルーして逃してしまっている",
+            notice: "人生の時間資産が、出会いを「待つ」ことに使われ、気づけば２年３年とズルズルと過ぎていくかもしれません😅"
         },
         1: {
             typeName: "魅力の宝の持ち腐れ型（プロデュース力のズレ）",
             normally: "ありのままの自分を最初から好きになってほしい、自己紹介や写真だけで勝手に判断されたくない",
-            detail: "本来のあなたの内面的な良さやお人柄が、異性に届くPRや魅力的な写真として十分にプロデュースできておらず、マッチングやお見合いの成立段階で非常に大きな損をしている"
+            detail: "本来のあなたの内面的な良さやお人柄が、異性に届くPRや魅力的な写真として十分にプロデュースできておらず、マッチングやお見合いの成立段階で非常に大きな損をしている",
+            notice: "人生の時間資産が、本当はマッチするはずだった人とすれ違い続けることに使われ、気づけば２年３年とズルズルと過ぎていくかもしれません😅"
         },
         2: {
             typeName: "条件ガチガチ理想こだわり型（柔軟性のズレ）",
             normally: "絶対に妥協はしたくない。自分の求める完璧なスペックや、ストライクゾーンど真ん中の外見の人以外は会う価値がない",
-            detail: "数字上の条件やパッと見の写真イメージだけで判断してしまい、実際に会えば最高の相性になり得たはずの「隠れた超優良パートナー候補」を自ら次々と除外している"
+            detail: "数字上の条件やパッと見の写真イメージだけで判断してしまい、実際に会えば最高の相性になり得たはずの「隠れた超優良パートナー候補」を自ら次々と除外している",
+            notice: "人生の時間資産が、自分で作った条件のフィルターに使われ、気づけば２年３年とズルズルと過ぎていくかもしれません😅"
         },
         3: {
             typeName: "自己完結あきらめ警戒型（自己肯定感のズレ）",
             normally: "どうせ自分なんか選ばれない。下手に積極的になって断られたり傷ついたりするのは絶対に嫌だ",
-            detail: "自信のなさから消極的な受け答えや冷めたような態度をとってしまい、お相手に『自分に興味がないのかな』と誤解されて関係が自然消滅してしまっている"
+            detail: "自信のなさから消極的な受け答えや冷めたような態度をとってしまい、お相手に『自分に興味がないのかな』と誤解されて関係が自然消滅してしまっている",
+            notice: "人生の時間資産が、自分への自信を取り戻せないまま使われ、気づけば２年３年とズルズルと過ぎていくかもしれません😅"
         },
         4: {
             typeName: "ミスマッチ環境消耗型（環境適応力のズレ）",
             normally: "とりあえずみんながやっている知名度の高い相談所やマッチングアプリを続けていれば、いつかは出会えるはず",
-            detail: "あなたの性格や求める将来のライフスタイルと、現在利用しているサービスの会員層やシステムがミスマッチを起こしており、頑張れば頑張るほど気疲れしてエネルギーを消耗している"
+            detail: "あなたの性格や求める将来のライフスタイルと、現在利用しているサービスの会員層やシステムがミスマッチを起こしており、頑張れば頑張るほど気疲れしてエネルギーを消耗している",
+            notice: "人生の時間資産が、自分に合わない環境にエネルギーを吸い取られ続けることに使われ、気づけば２年３年とズルズルと過ぎていくかもしれません😅"
         }
     };
 
     // スタート前バリデーション
     function tryStartDiagnosis() {
+        try {
+            if (localStorage.getItem('zureShindanDone') === '1') {
+                alert('診断は同じ端末につき１回のみご利用いただけます。');
+                return;
+            }
+        } catch (e) {}
+
         const nameInput = document.getElementById('user-name');
         const ageSelect = document.getElementById('user-age');
         const errorEl = document.getElementById('input-error');
@@ -420,14 +430,13 @@
         const normalizedScores = scores.map((score, idx) => Math.round((score / maxVals[idx]) * 100));
 
         // 1番スコアが「低い」項目＝ズレが最大で課題になっている部分を特定
-        let minIdx = 0;
-        let minVal = normalizedScores[0];
-        for (let i = 1; i < normalizedScores.length; i++) {
-            if (normalizedScores[i] < minVal) {
-                minVal = normalizedScores[i];
-                minIdx = i;
-            }
-        }
+        // （同点の場合は偏りが出ないようランダムに選択し、5タイプすべてが出現しうるようにする）
+        let minVal = Math.min(...normalizedScores);
+        const minIndices = normalizedScores.reduce((arr, val, idx) => {
+            if (val === minVal) arr.push(idx);
+            return arr;
+        }, []);
+        const minIdx = minIndices[Math.floor(Math.random() * minIndices.length)];
 
         // 診断内容の動的マッピング
         const typeData = resultTypes[minIdx];
@@ -450,6 +459,16 @@
         document.getElementById('result-type-name').innerText = `【${typeData.typeName}】`;
         document.getElementById('normally-text').innerText = typeData.normally;
         document.getElementById('detail-text').innerText = typeData.detail;
+        document.getElementById('notice-text').innerText = typeData.notice;
+
+        // 診断済みフラグを保存（同じ端末・ブラウザでは再診断不可にする）
+        try {
+            localStorage.setItem('zureShindanDone', '1');
+        } catch (e) {}
+        const restartBtn = document.getElementById('restart-btn');
+        if (restartBtn) {
+            restartBtn.classList.add('hidden');
+        }
 
         const ctx = document.getElementById('radarChart').getContext('2d');
         if (window.myRadarChart) {
