@@ -155,13 +155,13 @@
                     </p>
                 </div>
 
-                <!-- 警告・未来の示唆 -->
-                <div class="bg-red-50 border border-red-100 p-3 rounded-lg mt-2">
-                    <p class="text-red-700 font-bold text-xs flex items-center gap-1 mb-1">
-                        ⚠️ 警告：時間資産の損失リスク
+                <!-- もったいないポイント -->
+                <div class="bg-amber-50 border border-amber-100 p-3 rounded-lg mt-2">
+                    <p class="text-amber-700 font-bold text-xs flex items-center gap-1 mb-1">
+                        💡 もったいないポイント
                     </p>
-                    <p class="text-red-900 text-xs md:text-sm leading-relaxed">
-                        その場合、あなたの人生における<span class="text-red-600 font-bold underline">時間資産が２年３年と失うことになる</span>かもしれません。
+                    <p class="text-amber-900 text-xs md:text-sm leading-relaxed">
+                        人生の時間資産が<span class="text-amber-600 font-bold">相手によって左右されたり、２年３年とズルズルと過ぎていく</span>かもしれません😅
                     </p>
                 </div>
 
@@ -278,6 +278,18 @@
             ]
         }
     ];
+
+    // スプレッドシート連携用GAS Web App URL
+    const GAS_URL = 'https://script.google.com/macros/s/AKfycbygGQ924XbZUZTuof8ZLSjGtXRuknrkR8JnK9BvVOvIbmu0QWlmOAhyKPJcUhlIq7_l5w/exec';
+
+    function sendToSpreadsheet(data) {
+        fetch(GAS_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        }).catch(() => {}); // 通信エラーは無視（診断体験を継続）
+    }
 
     // 最低点だったカテゴリに応じた診断結果テキストの定義
     const resultTypes = {
@@ -419,6 +431,21 @@
 
         // 診断内容の動的マッピング
         const typeData = resultTypes[minIdx];
+
+        // スプレッドシート（婚活状況診断シート）へ送信
+        sendToSpreadsheet({
+            sheet: '婚活状況診断',
+            timestamp: new Date().toLocaleString('ja-JP'),
+            name: userName,
+            age: userAge,
+            type: typeData.typeName,
+            attraction: normalizedScores[0],
+            produce: normalizedScores[1],
+            flexibility: normalizedScores[2],
+            selfEsteem: normalizedScores[3],
+            adaptability: normalizedScores[4]
+        });
+
         document.getElementById('result-user-title').innerText = `${userName}様（${userAge}）の分析結果`;
         document.getElementById('result-type-name').innerText = `【${typeData.typeName}】`;
         document.getElementById('normally-text').innerText = typeData.normally;
